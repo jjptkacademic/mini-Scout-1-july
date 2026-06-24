@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flow พิธีการวันสถาปนาคณะลูกเสือแห่งชาติ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513; /* สีประจำลูกเสือ */
+            --secondary-color: #FFD700;
+            --dark-color: #2b2b2b;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 30px 20px;
+            background: linear-gradient(135deg, var(--primary-color), #5c2d0c);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .quick-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+
+        .phase-title {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin: 30px 0 15px 0;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .step-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            border-left: 5px solid #ccc;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .step-card.active {
+            border-left-color: var(--primary-color);
+            background-color: #fffaf5;
+        }
+
+        .step-card.done {
+            border-left-color: #28a745;
+            background-color: #f3fdf6;
+            opacity: 0.7;
+        }
+
+        .step-checkbox {
+            margin-top: 5px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            accent-color: #28a745;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step-num {
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+            font-size: 1rem;
+        }
+
+        .role-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .role-commander { background-color: #e3f2fd; color: #0d47a1; }
+        .role-mc { background-color: #f3e5f5; color: #4a148c; }
+        .role-music { background-color: #fff3e0; color: #e65100; }
+        .role-all { background-color: #efebe9; color: #4e342e; }
+
+        .command-text {
+            background-color: #fff9db;
+            border-left: 3px solid #fab005;
+            padding: 8px 12px;
+            margin: 8px 0;
+            font-weight: 600;
+            color: #c92a2a;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .script-box {
+            background-color: #f1f3f5;
+            padding: 12px;
+            border-radius: 6px;
+            margin: 8px 0;
+            font-size: 0.95rem;
+            border: 1px dashed #ced4da;
+        }
+
+        .pledge-box {
+            background-color: #fff5f5;
+            border: 2px solid #ffc9c9;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .pledge-box h4 {
+            color: #fa5252;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .pledge-line {
+            font-weight: 600;
+            margin-bottom: 5px;
+            padding-left: 15px;
+            border-left: 2px solid #ff8787;
+        }
+
+        .tip-box {
+            background-color: #e6fcf5;
+            border-left: 4px solid #20c997;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #0c8599;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            font-size: 0.85rem;
+            color: #868e96;
+            border-top: 1px solid #dee2e6;
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            header h1 { font-size: 1.4rem; }
+            .quick-stats { grid-template-columns: 1fr; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>พิธีวันคล้ายวันสถาปนาคณะลูกเสือแห่งชาติ</h1>
+        <p>ระดับโรงเรียน (ฉบับกระชับ/ไหลลื่นเป็นสากล)</p>
+        <div class="quick-stats">
+            <div>🎵 เพลงมหาฤกษ์ (2 ครั้ง)</div>
+            <div>🎵 เพลงสรรเสริญฯ (1 ครั้ง)</div>
+            <div>🎵 เพลงมาร์ชลูกเสือ (สวนสนาม)</div>
+        </div>
+    </header>
+
+    <!-- PHASE 1 -->
+    <div class="phase-title">📌 ช่วงที่ 1: พิธีเปิดและถวายราชสดุดี</div>
+    
+    <div class="step-card active" id="step1">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step1')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 1: ประธานมาถึงแท่นพิธี</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"ทั้งหมด... ตรง! -> ตรงหน้า... ระวัง! -> วันทยหัตถ์!" (หรือ วันทยาวุธ!)</div>
+            <span class="role-badge role-music">ฝ่ายเครื่องเสียง/แตรวง</span>
+            <p>บรรเลง <strong>เพลงมหาฤกษ์</strong> จนจบ</p>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"มือลง!" (หรือ เรียบอาวุธ!)</div>
+        </div>
+    </div>
+
+    <div class="step-card" id="step2">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step2')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 2: ถวายราชสักการะ</div>
+            <span class="role-badge role-mc">พิธีกร</span>
+            <div class="script-box">"ลำดับต่อไป ขอเชิญท่านประธานในพิธี เปิดกรวยดอกไม้ธูปเทียนแพ ถวายราชสักการะหน้าพระบรมฉายาลักษณ์ ขอเรียนเชิญครับ"</div>
+            <p style="font-size: 0.9rem; color:#666;">*รอจนประธานเดินไปถึงและเริ่มจับกรวยดอกไม้*</p>
+        </div>
+    </div>
+
+    <div class="step-card" id="step3">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step3')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 3: เพลงสรรเสริญพระบารมี</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"ตรงหน้า... ระวัง! -> วันทยหัตถ์! / วันทยาวุธ!"</div>
+            <span class="role-badge role-music">ฝ่ายเครื่องเสียง/แตรวง</span>
+            <p>บรรเลง <strong>เพลงสรรเสริญพระบารมี</strong> จนจบ</p>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"มือลง! / เรียบอาวุธ!"</div>
+        </div>
+    </div>
+
+    <!-- PHASE 2 -->
+    <div class="phase-title">📌 ช่วงที่ 2: รายงานยอดและทบทวนคำปฏิญาณ</div>
+
+    <div class="step-card" id="step4">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step4')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 4: รายงานยอดต่อประธาน</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <p>วิ่งไปกึ่งกลางหน้าแท่นประธาน ทำความเคารพ แล้วกล่าวรายงานตัวเสียงดังฟังชัด:</p>
+            <div class="script-box">
+                "เรียนท่านประธานในพิธี ข้าพเจ้าในนามผู้บังคับขบวนสวนสนาม ขอรายงานยอดลูกเสือ เนตรนารี และผู้บังคับบัญชาที่เข้าร่วมพิธีในวันนี้ เป็นจำนวนทั้งหมด.........คน ขบวนพร้อมรับการทบทวนคำปฏิญาณและสวนสนามแล้วครับ!"
+            </div>
+            <p style="font-size: 0.9rem; color:#666;">*กล่าวจบ ทำความเคารพ แล้ววิ่งกลับไปประจำจุดเดิม*</p>
+        </div>
+    </div>
+
+    <div class="step-card" id="step5">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step5')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 5: เตรียมทบทวนคำปฏิญาณ</div>
+            <span class="role-badge role-mc">พิธีกร</span>
+            <div class="script-box">"ลำดับต่อไป เป็นพิธีทบทวนคำปฏิญาณของลูกเสือและเนตรนารี ขอเชิญพี่น้องลูกเสือเนตรนารีทุกท่านเตรียมกล่าวคำปฏิญาณตนครับ"</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"ทั้งหมด... ตรง! -> ลูกเสือ... เตรียมกล่าวคำปฏิญาณ... แสดงรหัส!"</div>
+            <div class="tip-box">💡 <strong>ท่าแสดงรหัส:</strong> ลูกเสือทุกคนยกมือขวาชู 3 นิ้วระดับหัวไหล่ (ผู้แทนนำกล่าวเดินไปที่ไมค์กึ่งกลางสนาม)</div>
+        </div>
+    </div>
+
+    <div class="step-card" id="step6">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step6')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 6: พิธีกล่าวคำปฏิญาณตน</div>
+            <span class="role-badge role-all">ผู้นำกล่าว & ลูกเสือทั้งหมด</span>
+            <div class="pledge-box">
+                <h4>📜 คำปฏิญาณของลูกเสือ</h4>
+                <p style="text-align:center; font-size:0.85rem; color:#666; margin-bottom:10px;">(ผู้นำกล่าววรรคหน้า -> ทุกคนในแถวกล่าวตามเสียงดัง)</p>
+                <div class="pledge-line">"ด้วยเกียรติของข้า / ข้าสัญญาว่า"</div>
+                <div class="pledge-line">"ข้อ 1 ข้าจะจงรักภักดีต่อชาติ / ศาสนา / พระมหากษัตริย์"</div>
+                <div class="pledge-line">"ข้อ 2 ข้าจะช่วยเหลือผู้อื่นทุกเมื่อ"</div>
+                <div class="pledge-line">"ข้อ 3 ข้าจะปฏิบัติตามกฎของลูกเสือ"</div>
+            </div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"มือลง! -> ตามระเบียบ... พัก!"</div>
+        </div>
+    </div>
+
+    <div class="step-card" id="step7">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step7')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 7: ประธานกล่าวให้โอวาท</div>
+            <span class="role-badge role-mc">พิธีกร</span>
+            <div class="script-box">"ลำดับต่อไป ขอเรียนเชิญท่านประธานในพิธี ได้กรุณากล่าวให้โอวาทแก่พี่น้องลูกเสือ เนตรนารี และผู้บังคับบัญชา เนื่องในวันสถาปนาคณะลูกเสือแห่งชาติ ขอเรียนเชิญครับ"</div>
+            <p style="font-size: 0.9rem; color:#666;">*ลูกเสือฟังโอวาทในท่าตามระเบียบพัก*</p>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <p style="margin-top:5px;">(เมื่อประธานกล่าวจบ) สั่ง:</p>
+            <div class="command-text">"ทั้งหมด... ตรง!"</div>
+        </div>
+    </div>
+
+    <!-- PHASE 3 -->
+    <div class="phase-title">📌 ช่วงที่ 3: พิธีเดินสวนสนาม (Grand March)</div>
+
+    <div class="step-card" id="step8">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step8')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 8: ปล่อยขบวนสวนสนาม</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"(ถ้ามีพลอง/ง่าม) แบกอาวุธ! -> ขบวนสวนสนาม... หน้า... เดิน!"</div>
+            <span class="role-badge role-music">ฝ่ายเครื่องเสียง/แตรวง</span>
+            <p>เป่าสัญญาณแตรเดี่ยวเตือน 1 รอบ จากนั้นบรรเลง <strong>เพลงมาร์ชลูกเสือ</strong> วนไปเรื่อยๆ จนกว่าทุกลำดับจะเดินเสร็จ</p>
+        </div>
+    </div>
+
+    <div class="step-card" id="step9">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step9')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 9: การทำความเคารพขณะเดินผ่านประธาน</div>
+            <span class="role-badge role-all">ผู้บังคับบัญชาประจำกอง & คนถือธง & ลูกเสือ</span>
+            <div class="tip-box" style="color: #495057; border-left-color: #495057; background-color: #f8f9fa;">
+                <strong>📍 ก่อนถึงประธาน 6 ก้าวมาร์กจุดไว้:</strong><br>
+                1. <strong>ผกก.ประจำกอง:</strong> สั่งเสียงดัง <span style="color:#c92a2a; font-weight:600;">"ตรงหน้า... ระวัง!"</span> พร้อมทำวันทยหัตถ์จนกว่าจะพ้นประธาน<br>
+                2. <strong>คนถือธงโรงเรียน/คณะ:</strong> ลดธงทแยงลง 45 องศาไปข้างหน้าเพื่อทำความเคารพ (อย่าให้ปลายธงลากพื้น)<br>
+                3. <strong>ลูกเสือในแถว:</strong> สะบัดหน้าไปทางขวา (แลขวา) มองตรงไปที่ประธาน มือแกว่งตามปกติ เท้าเดินมาร์ชตรงไปขวาไม่เอียงตามหน้า
+            </div>
+            <div class="tip-box" style="color: #2b8a3e; border-left-color: #2b8a3e; background-color: #f4fce3; margin-top:5px;">
+                <strong>📍 เมื่อเดินพ้นประธานไปแล้ว 2 ก้าว:</strong><br>
+                - ผกก.ประจำกอง สั่ง: <span style="color:#2b8a3e; font-weight:600;">"แลขวา... ตรง!"</span> ผกก.เอามือลง / คนถือธงยกธงตั้งตรง / ลูกเสือสะบัดหน้ากลับมาตรงตามเดิม เดินเข้าสู่จุดตั้งแถวเดิม
+            </div>
+        </div>
+    </div>
+
+    <!-- PHASE 4 -->
+    <div class="phase-title">📌 ช่วงที่ 4: พิธีปิด</div>
+
+    <div class="step-card" id="step10">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step10')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 10: เคารพประธานปิดพิธี</div>
+            <p style="font-size: 0.9rem; color:#666; margin-bottom:5px;">*เมื่อทุกกองสวนสนามเดินวนกลับเข้าที่ตั้งแถวเดิมเรียบร้อยแล้ว*</p>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"เรียบอาวุธ! -> ตรงหน้า... ระวัง! -> วันทยหัตถ์! / วันทยาวุธ!"</div>
+            <span class="role-badge role-music">ฝ่ายเครื่องเสียง/แตรวง</span>
+            <p>บรรเลง <strong>เพลงมหาฤกษ์</strong> ส่งท่านประธานในพิธี</p>
+            <p style="font-size: 0.9rem; color:#666; margin-top:5px;">*ประธานทำความเคารพตอบ และเดินออกจากบริเวณพิธี*</p>
+        </div>
+    </div>
+
+    <div class="step-card" id="step11">
+        <input type="checkbox" class="step-checkbox" onclick="toggleStep('step11')">
+        <div class="step-content">
+            <div class="step-num">ขั้นตอนที่ 11: เลิกแถว</div>
+            <span class="role-badge role-commander">ผบ.ขบวนสวนสนาม</span>
+            <div class="command-text">"มือลง! / เรียบอาวุธ! -> แยก!"</div>
+            <p style="text-align: center; font-weight: 600; color: #28a745; margin-top: 10px;">✨ เสร็จสิ้นพิธีการอย่างสง่างาม ✨</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Scout Day Flow Web App - ออกแบบให้สแกนง่ายสไตล์ Responsive</p>
+    </footer>
+</div>
+
+<script>
+    function toggleStep(stepId) {
+        const card = document.getElementById(stepId);
+        const checkbox = card.querySelector('.step-checkbox');
+        
+        if (checkbox.checked) {
+            card.classList.remove('active');
+            card.classList.add('done');
+            
+            // เลื่อนไปไฮไลต์ข้อถัดไปโดยอัตโนมัติเพื่อความสะดวก
+            const nextCard = card.nextElementSibling;
+            if (nextCard && nextCard.classList.contains('step-card')) {
+                nextCard.classList.add('active');
+            }
+        } else {
+            card.classList.remove('done');
+            card.classList.add('active');
+        }
+    }
+</script>
+
+</body>
+</html>
